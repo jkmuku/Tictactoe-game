@@ -1,4 +1,6 @@
-## SImple Tic-tac-toe game built with React Typescript
+# About
+
+SImple Tic-tac-toe game built with React Typescript
 
 # Getting Started with Create React App
 
