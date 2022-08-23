@@ -6,9 +6,9 @@ function Game (){
 
   const [squares, setSquares] = useState(Array(9).fill(null));
   const [xIsNext, setXisNext] = useState(true);
-  // const [gameOver, setGameOver] = useState(false);
-  // const [isClicked, setIsClicked] = useState(false);
-  // const [winner, setWinner] = useState(null);
+
+  const [moves, setMoves] = useState(0)
+  
   type Squares = (null | string)[];
   type WinningLines = [number, number, number][];
 
@@ -37,6 +37,7 @@ function Game (){
   }
 
   function handleClick(index: number) {
+
     const _squares: Squares = [...squares];
     if (squares[index] || winner) {
       return;
@@ -44,6 +45,10 @@ function Game (){
     _squares[index] = xIsNext === true ? "X" : "O";
     setSquares(_squares);
     setXisNext((current) => !current);
+
+    let _moves = moves;
+    _moves++;
+    setMoves(_moves)
   }
 
   let winner = getWinner(squares);
@@ -62,6 +67,7 @@ function Game (){
         <Square index={8} value={squares[8]} onClick={() => handleClick(8)} />
       </div>
       <div className="winner">{winner ? winner + " is the winner!" : ""}</div>
+      <div className="tiegame">{!winner && moves == 9 ? "It's a tie!"  : ""}</div>
     </div>
   );
 }
